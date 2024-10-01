@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "b71cb9ad-6008-4777-a183-147627957bef",
+		"name": "RentalAgreements",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37534444"
+	},
+	"item": [
+		{
+			"name": "/checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"toolCode\": \"JAKD\",\r\n    \"rentalDays\": 90,\r\n    \"discountPercent\": 10,\r\n    \"checkoutDate\": \"07/03/1999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/rental-application/checkout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"rental-application",
+						"checkout"
+					]
+				},
+				"description": "Returns glossary terms"
+			},
+			"response": [
+				{
+					"name": "An error response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"title\": \"Unexpected Problem\",\n \"type\": \"https://api.weather.gov/problems/UnexpectedProblem\",\n \"status\": 500,\n \"detail\": \"An unexpected problem has occurred.\",\n \"instance\": \"https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		},
+		{
+			"name": "/checkout NoDiscount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"toolCode\": \"JAKD\",\r\n    \"rentalDays\": 90,\r\n    \"checkoutDate\": \"07/03/1999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/rental-application/checkout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"rental-application",
+						"checkout"
+					]
+				},
+				"description": "Returns glossary terms"
+			},
+			"response": [
+				{
+					"name": "An error response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"title\": \"Unexpected Problem\",\n \"type\": \"https://api.weather.gov/problems/UnexpectedProblem\",\n \"status\": 500,\n \"detail\": \"An unexpected problem has occurred.\",\n \"instance\": \"https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		},
+		{
+			"name": "/checkout No Required Field",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"toolCode\": \"JAKD\",\r\n    \"rentalDays\": 4,\r\n    \"checkoutDate\": \"07/3/1999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v1/rental-application/checkout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"rental-application",
+						"checkout"
+					]
+				},
+				"description": "Returns glossary terms"
+			},
+			"response": [
+				{
+					"name": "An error response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"title\": \"Unexpected Problem\",\n \"type\": \"https://api.weather.gov/problems/UnexpectedProblem\",\n \"status\": 500,\n \"detail\": \"An unexpected problem has occurred.\",\n \"instance\": \"https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		},
+		{
+			"name": "/loggers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/actuator/loggers/com.assessment",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"loggers",
+						"com.assessment"
+					]
+				},
+				"description": "Returns glossary terms"
+			},
+			"response": [
+				{
+					"name": "An error response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"title\": \"Unexpected Problem\",\n \"type\": \"https://api.weather.gov/problems/UnexpectedProblem\",\n \"status\": 500,\n \"detail\": \"An unexpected problem has occurred.\",\n \"instance\": \"https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		},
+		{
+			"name": "/loggers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"configuredLevel\": \"INFO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/actuator/loggers/com.assessment",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"loggers",
+						"com.assessment"
+					]
+				},
+				"description": "Returns glossary terms"
+			},
+			"response": [
+				{
+					"name": "An error response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"title\": \"Unexpected Problem\",\n \"type\": \"https://api.weather.gov/problems/UnexpectedProblem\",\n \"status\": 500,\n \"detail\": \"An unexpected problem has occurred.\",\n \"instance\": \"https://api.weather.gov/requests/493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}"
+				},
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/glossary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"glossary"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/ld+json"
+						}
+					],
+					"cookie": [],
+					"body": "\"\""
+				}
+			]
+		}
+	]
+}

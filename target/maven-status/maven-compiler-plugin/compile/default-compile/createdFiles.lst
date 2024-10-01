@@ -1,0 +1,13 @@
+com\assessment\exceptions\MissingRequiredFieldException.class
+com\assessment\config\Config.class
+com\assessment\responses\RentalAgreement.class
+com\assessment\PrototypeData\ToolData.class
+com\assessment\services\RentalAgreementsService.class
+com\assessment\exceptions\ToolNotFoundException.class
+com\assessment\exceptions\InvalidRequestException.class
+com\assessment\RentalAgreementsApplication.class
+com\assessment\exceptions\ControllerExceptionHandler.class
+com\assessment\requests\Checkout.class
+com\assessment\responses\ErrorInfo.class
+com\assessment\controllers\RentalAgreementsController.class
+com\assessment\PrototypeData\ToolInfo.class

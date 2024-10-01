@@ -1,0 +1,166 @@
+﻿openapi: 3.1.0
+info:
+  title: Rental Agreement Service
+  description: This service allows for the creation of a rental agreement based on the customer's request.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8080
+    description: Used to test the program locally.
+paths:
+  /v1/rental-application/checkout:
+    post:
+      summary: Allow for the checkout of a piece of equipment.  If available, will return a rental agreement for the equipment requested.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckOut'
+      responses:
+        '200':
+          description: A completed rental agreement with charge details, tool information, and rental period
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalAgreement'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/InvalidDateFormat'
+                  - $ref: '#/components/schemas/InvalidDiscount'
+                  - $ref: '#/components/schemas/InvalidRentalLength'
+                  - $ref: '#/components/schemas/MissingRequiredProperties'
+                  - $ref: '#/components/schemas/MissingRequestBody'
+        '404':
+          description: Unable to find the tool code specified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolCodeNotFound'
+        default:
+          description: Unexpected error
+
+components:
+  schemas:
+    CheckOut:
+      type: object
+      properties:
+        toolCode:
+          $ref: '#/components/schemas/ToolCode'
+        rentalDays:
+          $ref: '#/components/schemas/RentalDays'
+        discountPercent:
+          $ref: '#/components/schemas/DiscountPercent'
+        checkoutDate:
+          $ref: '#/components/schemas/Date'
+      required:
+        - toolCode
+        - rentalDays
+        - checkoutDate
+    ToolCode:
+      type: string
+      example: "CHNS"
+    RentalDays:
+      type: integer
+      example: 4
+    DiscountPercent:
+      type: integer
+      example: 25
+      default: 0
+    Date:
+      type: string
+      example: "01/01/2001"
+      format: date
+      pattern: "MM/DD/YYYY"
+    RentalAgreement:
+      type: object
+      properties:
+        toolCode:
+          $ref: '#/components/schemas/ToolCode'
+        toolType:
+          type: string
+          example: "Chainsaw"
+        toolBrand:
+          type: string
+          example: "Stihl"
+        rentalDays:
+          $ref: '#/components/schemas/RentalDays'
+        checkoutDate:
+          $ref: '#/components/schemas/Date'
+        dueDate:
+          $ref: '#/components/schemas/Date'
+        dailyRentalCharge:
+          type: float
+          example: 9.99
+        chargeDays:
+          type: integer
+          example: 3
+        preDiscountCharge:
+          type: float
+          example: 9.99
+        discountPercent:
+          $ref: '#/components/schemas/DiscountPercent'
+        discountAmount:
+          type: float
+          example: 5.50
+        finalCharge:
+          type: float
+          example: 4.99
+    InvalidDateFormat:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "Invalid date format, must be MM/DD/YYYY"
+        status:
+          type: integer
+          example: 400
+    InvalidDiscount:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "Discount must be between 0 and 100 inclusive"
+        status:
+          type: integer
+          example: 400
+    InvalidRentalLength:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "Rental days must be greater than 0"
+        status:
+          type: integer
+          example: 400
+    MissingRequiredProperties:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "Missing required field - toolCode"
+        status:
+          type: integer
+          example: 400
+    MissingRequestBody:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "No request body"
+        status:
+          type: integer
+          example: 400
+    ToolCodeNotFound:
+      type: object
+      properties:
+        errorMsg:
+          type: string
+          example: "Tool code not found - RNDM"
+        status:
+          type: integer
+          example: 404
+
